@@ -19,6 +19,13 @@ pipeline {
                 echo 'Testing...'
             }
         }
+         stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'sonar-scanner'
+                }
+            }
+        }
         stage('Deploy') {
             steps {
                 // Add your deploy steps here
